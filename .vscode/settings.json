@@ -1,0 +1,31 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": null,
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.block": "sameLine",
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.function": "sameLine",
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.namespace": "sameLine",
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.lambda": "sameLine",
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.type": "sameLine",
+  "C_Cpp.formatting": "vcFormat",
+  "editor.tabSize": 2,
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#70a3d2",
+    "activityBar.background": "#70a3d2",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#f7e7ef",
+    "activityBarBadge.foreground": "#15202b",
+    "commandCenter.border": "#e7e7e799",
+    "sash.hoverBorder": "#70a3d2",
+    "statusBar.background": "#498ac6",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#70a3d2",
+    "statusBarItem.remoteBackground": "#498ac6",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#498ac6",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#498ac699",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.color": "#498ac6"
+}
