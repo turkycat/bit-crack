@@ -22,24 +22,20 @@ static const unsigned int _IV[8] = {
 	0x5be0cd19
 };
 
-static unsigned int rotr(unsigned int x, int n)
-{
+static unsigned int rotr(unsigned int x, int n) {
 	return (x >> n) | (x << (32 - n));
 }
 
-static unsigned int MAJ(unsigned int a, unsigned int b, unsigned int c)
-{
+static unsigned int MAJ(unsigned int a, unsigned int b, unsigned int c) {
 	return (a & b) ^ (a & c) ^ (b & c);
 }
 
-static unsigned int CH(unsigned int e, unsigned int f, unsigned int g)
-{
+static unsigned int CH(unsigned int e, unsigned int f, unsigned int g) {
 	return (e & f) ^ (~e & g);
 }
 
 
-static void round(unsigned int a, unsigned int b, unsigned int c, unsigned int &d, unsigned e, unsigned int f, unsigned int g, unsigned int &h, unsigned int m, unsigned int k)
-{
+static void round(unsigned int a, unsigned int b, unsigned int c, unsigned int& d, unsigned e, unsigned int f, unsigned int g, unsigned int& h, unsigned int m, unsigned int k) {
 	unsigned int s = CH(e, f, g) + (rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25)) + k + m;
 
 	d += s + h;
@@ -48,15 +44,13 @@ static void round(unsigned int a, unsigned int b, unsigned int c, unsigned int &
 }
 
 
-void crypto::sha256Init(unsigned int *digest)
-{
-	for(int i = 0; i < 8; i++) {
+void crypto::sha256Init(unsigned int* digest) {
+	for (int i = 0; i < 8; i++) {
 		digest[i] = _IV[i];
 	}
 }
 
-void crypto::sha256(unsigned int *msg, unsigned int *digest)
-{
+void crypto::sha256(unsigned int* msg, unsigned int* digest) {
 	unsigned int a, b, c, d, e, f, g, h;
 	unsigned int s0, s1;
 
@@ -70,12 +64,12 @@ void crypto::sha256(unsigned int *msg, unsigned int *digest)
 	h = digest[7];
 
 	unsigned int w[80] = { 0 };
-	for(int i = 0; i < 16; i++) {
+	for (int i = 0; i < 16; i++) {
 		w[i] = msg[i];
 	}
 
 	// Expand 16 words to 64 words
-	for(int i = 16; i < 64; i++) {
+	for (int i = 16; i < 64; i++) {
 		unsigned int x = w[i - 15];
 		unsigned int y = w[i - 2];
 
@@ -84,7 +78,7 @@ void crypto::sha256(unsigned int *msg, unsigned int *digest)
 		w[i] = w[i - 16] + s0 + w[i - 7] + s1;
 	}
 
-	for(int i = 0; i < 64; i += 8) {
+	for (int i = 0; i < 64; i += 8) {
 		round(a, b, c, d, e, f, g, h, w[i], _K[i]);
 		round(h, a, b, c, d, e, f, g, w[i + 1], _K[i + 1]);
 		round(g, h, a, b, c, d, e, f, w[i + 2], _K[i + 2]);
