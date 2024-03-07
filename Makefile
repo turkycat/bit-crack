@@ -45,7 +45,7 @@ export BUILD_CUDA
 TARGETS=dir_addressutil dir_cmdparse dir_cryptoutil dir_keyfinderlib dir_keyfinder dir_secp256k1lib dir_util dir_logger dir_addrgen
 
 ifeq ($(BUILD_CUDA),1)
-	TARGETS:=${TARGETS} dir_cudaKeySearchDevice dir_cudautil
+	TARGETS:=${TARGETS} dir_cudaKeySearchDevice dir_cudautil dir_cudainfo
 endif
 
 ifeq ($(BUILD_OPENCL),1)
