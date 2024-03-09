@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# shell scripts
+*.sh
+
+# continuefile
+continuefile
+
 # These files are auto-generated during building and do
 # not need to be checked in
 AddrGen/addrgen.bin
@@ -11,10 +17,11 @@ CLKeySearchDevice/bitcrack.cl
 CLKeySearchDevice/bitcrack_cl.cpp
 CLUnitTests/test.cpp
 CLUnitTests/test.cl
-KeyFinder/cuKeyFinder.bin
-KeyFinder/clKeyFinder.bin
 CLUnitTests/cltest.cl
 CLUnitTests/cltest.cpp
+cudaInfo/cudainfo.bin
+KeyFinder/cuKeyFinder.bin
+KeyFinder/clKeyFinder.bin
 
 # Linux build results
 *.o

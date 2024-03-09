@@ -4,13 +4,16 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/opt/cuda/include"
+                "/usr/local/include/**",
+                "/opt/cuda/include/**"
             ],
-            "defines": [],
-            "compilerPath": "/usr/bin/clang",
+            "defines": [
+                "BUILD_CUDA=1"
+            ],
+            "compilerPath": "/usr/bin/g++",
             "cStandard": "c17",
             "cppStandard": "c++17",
-            "intelliSenseMode": "linux-clang-x64"
+            "intelliSenseMode": "linux-gcc-x64"
         }
     ],
     "version": 4

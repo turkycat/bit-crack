@@ -31,8 +31,8 @@ typedef struct {
   // The last key to be checked
   secp256k1::uint256 endKey = secp256k1::N - 1;
 
-  uint64_t statusInterval = 1800;
-  uint64_t checkpointInterval = 60000;
+  uint64_t statusInterval = 5000; // 5 seconds
+  uint64_t checkpointInterval = 60000 * 2;  // 2 minutes
 
   unsigned int threads = 0;
   unsigned int blocks = 0;
@@ -374,7 +374,6 @@ int run() {
   Logger::log(LogLevel::Info, "Counting by: " + _config.stride.toString());
 
   try {
-
     _lastUpdate = util::getSystemTime();
     _startTime = util::getSystemTime();
 

@@ -140,26 +140,21 @@ bool KeyFinder::isTargetInList(const unsigned int hash[5]) {
 
 void KeyFinder::run() {
   uint64_t pointsPerIteration = _device->keysPerStep();
-
-  _running = true;
-
-  util::Timer timer;
-
-  timer.start();
+  std::string deviceName = _device->getDeviceName();
 
   uint64_t prevIterCount = 0;
-
+  util::Timer timer;
+  timer.start();
   _totalTime = 0;
-
+  _running = true;
   while (_running) {
 
     _device->doStep();
     _iterCount++;
 
     // Update status
-    uint64_t t = timer.getTime();
-
-    if (t >= _statusInterval) {
+    uint64_t elapsed = timer.getTime();
+    if (elapsed >= _statusInterval) {
 
       KeySearchStatus info;
 
@@ -167,23 +162,21 @@ void KeyFinder::run() {
 
       _total += count;
 
-      double seconds = (double)t / 1000.0;
-
+      double seconds = (double)elapsed / 1000.0;
       info.speed = (double)((double)count / seconds) / 1000000.0;
 
       info.total = _total;
-
+      _totalTime += elapsed;
       info.totalTime = _totalTime;
 
       uint64_t freeMem = 0;
-
       uint64_t totalMem = 0;
 
       _device->getMemoryInfo(freeMem, totalMem);
 
       info.freeMemory = freeMem;
       info.deviceMemory = totalMem;
-      info.deviceName = _device->getDeviceName();
+      info.deviceName = deviceName;
       info.targets = _targets.size();
       info.nextKey = getNextKey();
 
@@ -191,15 +184,14 @@ void KeyFinder::run() {
 
       timer.start();
       prevIterCount = _iterCount;
-      _totalTime += t;
     }
+
 
     std::vector<KeySearchResult> results;
 
+    // check if any results were found and report them
     if (_device->getResults(results) > 0) {
-
       for (unsigned int i = 0; i < results.size(); i++) {
-
         KeySearchResult info;
         info.privateKey = results[i].privateKey;
         info.publicKey = results[i].publicKey;
